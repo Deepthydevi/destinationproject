@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        {% if destination %}
+            <h1>Destination Details</h1>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ destination.place_name }}</h5>
+                    <p class="card-text"><strong>Weather:</strong> {{ destination.weather }}</p>
+                    <p class="card-text"><strong>State:</strong> {{ destination.state }}</p>
+                    <p class="card-text"><strong>District:</strong> {{ destination.district }}</p>
+                    <p class="card-text"><strong>Google Map Link:</strong> <a href="{{ destination.google_map_link }}" target="_blank">View on Google Maps</a></p>
+                    <p class="card-text"><strong>Description:</strong> {{ destination.description }}</p>
+                    {% if destination.image %}
+                        <img src="{{ destination.image }}" alt="Destination Image" class="img-fluid mt-3">
+                    {% endif %}
+                </div>
+            </div>
+        {% elif error_message %}
+            <div class="alert alert-danger mt-3">
+                {{ error_message }}
+            </div>
+        {% else %}
+            <div class="alert alert-warning mt-3">
+                No data available.
+            </div>
+        {% endif %}
+        <a href="{% url 'index' %}" class="btn btn-secondary mt-3">Back to List</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
